@@ -3,7 +3,6 @@ package org.example.entities;
 import lombok.*;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Order {

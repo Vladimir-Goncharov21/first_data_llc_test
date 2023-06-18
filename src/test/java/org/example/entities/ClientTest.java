@@ -10,12 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClientTest {
 
-     Client client;
+    Client client;
 
     @BeforeEach
     void setUp() {
-        client = new Client("C1",1000, new HashMap<>(Map.of("A", 130, "B", 240, "C", 760, "D", 320)));
+        client = new Client("C1", 1000, new HashMap<>(Map.of("A", 130, "B", 240, "C", 760, "D", 320)));
     }
+
     @Test
     void testArrayConstructor() {
         String[] array = {"C1", "1000", "130", "240", "760", "320"};
@@ -29,10 +30,11 @@ class ClientTest {
         client.updatePapersCount("A", 10);
         assertEquals(140, client.getPapersMap().get("A"));
     }
+
     @Test
     void updatePapersCountSell() {
         client.updatePapersCount("A", -10);
-        assertEquals( 120, client.getPapersMap().get("A"));
+        assertEquals(120, client.getPapersMap().get("A"));
     }
 
     @Test

@@ -19,10 +19,10 @@ public class Client {
         this.name = array[0];
         this.balance = Integer.parseInt(array[1]);
         this.papersMap = new HashMap<>() {{
-           put("A", Integer.parseInt(array[2]));
-           put("B", Integer.parseInt(array[3]));
-           put("C", Integer.parseInt(array[4]));
-           put("D", Integer.parseInt(array[5]));
+            put("A", Integer.parseInt(array[2]));
+            put("B", Integer.parseInt(array[3]));
+            put("C", Integer.parseInt(array[4]));
+            put("D", Integer.parseInt(array[5]));
         }};
     }
 

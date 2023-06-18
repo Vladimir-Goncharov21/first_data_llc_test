@@ -22,6 +22,6 @@ class OrderTest {
 
     @Test
     void sum() {
-        assertEquals( 45, order.sum());
+        assertEquals(45, order.sum());
     }
 }

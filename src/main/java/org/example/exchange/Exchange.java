@@ -15,11 +15,11 @@ public class Exchange {
         Map<String, Client> clientHashMap = clientList.stream().collect(Collectors.toMap(Client::getName, Function.identity()));
         // делим список заявок в мапу с покупками и продажами
         Map<OperationType, List<Order>> sortedOrdersMap = orderList.stream().collect(Collectors.groupingBy(Order::getOperationType));
-        for (Order buyOrder  : sortedOrdersMap.get(OperationType.BUY)) {
-            Optional<Order>  optionalOrder = sortedOrdersMap.get(OperationType.SELL).stream().filter(sellOrder -> !sellOrder.getClientName().equals(buyOrder.getClientName())
-            && sellOrder.getPaperName().equals(buyOrder.getPaperName())
-            && sellOrder.getPrice() == buyOrder.getPrice()
-            && sellOrder.getCount() == buyOrder.getCount()).findAny();
+        for (Order buyOrder : sortedOrdersMap.get(OperationType.BUY)) {
+            Optional<Order> optionalOrder = sortedOrdersMap.get(OperationType.SELL).stream().filter(sellOrder -> !sellOrder.getClientName().equals(buyOrder.getClientName())
+                    && sellOrder.getPaperName().equals(buyOrder.getPaperName())
+                    && sellOrder.getPrice() == buyOrder.getPrice()
+                    && sellOrder.getCount() == buyOrder.getCount()).findAny();
             if (optionalOrder.isPresent()) {
                 Order sellOrder = optionalOrder.get();
                 sortedOrdersMap.get(OperationType.SELL).remove(sellOrder);

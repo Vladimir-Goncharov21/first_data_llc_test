@@ -38,6 +38,7 @@ class ExchangeTest {
                 new Client("C3", 13, new HashMap<>(Map.of("A", 0, "B", 12, "C", 0, "D", 0))));
         assertEquals(expectedClientList, completedClientList);
     }
+
     // заявки выполняются частично, ничего не должно поменяться у клиентов
     @Test
     void partialMatchOrder() {
@@ -48,13 +49,14 @@ class ExchangeTest {
         List<Client> completedClientList = Exchange.completeListOfOrders(clientList, orderList);
         assertEquals(clientList, completedClientList);
     }
+
     // не покупаются у самого себя
     @Test
     void selfBuy() {
         List<Order> orderList = new ArrayList<>(List.of(
                 new Order("C3", OperationType.SELL, "A", 13, 1),
                 new Order("C3", OperationType.BUY, "A", 13, 1)
-                ));
+        ));
         List<Client> completeList = Exchange.completeListOfOrders(clientList, orderList);
         // Количество бумаги А не изменится
         assertEquals(0, completeList.stream().filter(client -> "C3".equals(client.getName())).findAny().get().getPapersMap().get("A"));
