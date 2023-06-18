@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class Exchange {
     public static List<Client> completeListOfOrders(List<Client> clientList, List<Order> orderList) {
+
         //  собираем клиентов в мапу по имени, что бы проще и быстрее их доставать
         Map<String, Client> clientHashMap = clientList.stream().collect(Collectors.toMap(Client::getName, Function.identity()));
         // делим список заявок в мапу с покупками и продажами
