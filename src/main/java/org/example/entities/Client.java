@@ -7,6 +7,8 @@ import java.util.Map;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Client {
     private String name;
     private int balance; // баланс в долларах
@@ -33,4 +35,5 @@ public class Client {
     public String toString() {
         return String.format("%s\t%d\t%s\t%s\t%s\t%s", name, balance, papersMap.get("A"), papersMap.get("B"), papersMap.get("C"), papersMap.get("D"));
     }
+
 }
