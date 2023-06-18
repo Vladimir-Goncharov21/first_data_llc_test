@@ -27,8 +27,7 @@ public class ExchangeService {
         return parsedOrders.stream().map(Order::new).toList();
     }
 
-    public static void printClientsStatus(List<Client> clientList) throws IOException {
-        String uri = "src/main/resources/result.txt";
+    public static void printClientsStatus(List<Client> clientList, String uri) throws IOException {
         Path resultPath = Paths.get(uri);
         if (!resultPath.toFile().exists()) {
             Files.createFile(resultPath);

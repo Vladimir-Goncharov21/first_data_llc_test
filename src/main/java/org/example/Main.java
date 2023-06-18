@@ -13,6 +13,6 @@ public class Main {
         List<Client> clientList = ExchangeService.getClientsFromFile("src/main/resources/clients.txt");
         List<Order> orderList = ExchangeService.getOrdersFromFile("src/main/resources/orders.txt");
         List<Client> resultList = Exchange.completeListOfOrders(clientList, orderList);
-        ExchangeService.printClientsStatus(resultList);
+        ExchangeService.printClientsStatus(resultList, "src/main/resources/result.txt");
     }
 }
