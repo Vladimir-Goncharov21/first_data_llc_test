@@ -1,10 +1,11 @@
 package org.example.entities;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Order {
     private String clientName;
     private OperationType operationType;
