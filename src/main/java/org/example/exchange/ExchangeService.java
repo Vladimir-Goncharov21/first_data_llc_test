@@ -1,7 +1,6 @@
 package org.example.exchange;
 
 import org.example.entities.Client;
-import org.example.entities.OperationType;
 import org.example.entities.Order;
 
 import java.io.IOException;
@@ -20,21 +19,12 @@ public class ExchangeService {
 
     public static List<Client> getClientsFromFile(String uri) throws IOException {
         List<String[]> parsedClients = parseFromFile(uri);
-        return parsedClients.stream().map(array -> new Client(array[0],
-                Integer.parseInt(array[1]),
-                new HashMap<>(Map.of("A", Integer.parseInt(array[2]),
-                        "B", Integer.parseInt(array[3]),
-                        "C", Integer.parseInt(array[4]),
-                        "D", Integer.parseInt(array[5]))))).toList();
+        return parsedClients.stream().map(Client::new).toList();
     }
 
     public static List<Order> getOrdersFromFile(String uri) throws IOException {
         List<String[]> parsedOrders = parseFromFile(uri);
-        return parsedOrders.stream().map(array -> new Order(array[0],
-                OperationType.byShortString(array[1]),
-                array[2],
-                Integer.parseInt(array[3]),
-                Integer.parseInt(array[4]))).toList();
+        return parsedOrders.stream().map(Order::new).toList();
     }
 
     public static void printClientsStatus(List<Client> clientList) throws IOException {

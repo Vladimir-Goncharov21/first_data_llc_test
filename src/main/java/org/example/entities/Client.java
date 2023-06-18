@@ -2,9 +2,9 @@ package org.example.entities;
 
 import lombok.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
-@AllArgsConstructor
 @Getter
 @Setter
 public class Client {
@@ -12,6 +12,17 @@ public class Client {
     private int balance; // баланс в долларах
     // балансы по ценным бумагам, ключ название бумаги, значение её количество
     private Map<String, Integer> papersMap;
+
+    public Client(String[] array) {
+        this.name = array[0];
+        this.balance = Integer.parseInt(array[1]);
+        this.papersMap = new HashMap<>() {{
+           put("A", Integer.parseInt(array[2]));
+           put("B", Integer.parseInt(array[3]));
+           put("C", Integer.parseInt(array[4]));
+           put("D", Integer.parseInt(array[5]));
+        }};
+    }
 
     // если количество бумаг выросло, передать дельту с +, если уменьшилось, то с минус
     public void updatePapersCount(String key, Integer delta) {
