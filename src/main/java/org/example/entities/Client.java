@@ -1,6 +1,7 @@
 package org.example.entities;
 
 import lombok.*;
+import org.example.exchange.ExchangeService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +34,13 @@ public class Client {
 
     @Override
     public String toString() {
-        return String.format("%s\t%d\t%s\t%s\t%s\t%s", name, balance, papersMap.get("A"), papersMap.get("B"), papersMap.get("C"), papersMap.get("D"));
+        StringBuilder stringBuilder = new StringBuilder(name);
+        stringBuilder.append(ExchangeService.SPLITTER).append(balance).append(ExchangeService.SPLITTER);
+        for (Integer integer : papersMap.values()) {
+            stringBuilder.append(integer).append(ExchangeService.SPLITTER);
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1); // убираем последний SPLITTER
+        return stringBuilder.toString();
     }
 
 }
