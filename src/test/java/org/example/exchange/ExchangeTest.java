@@ -32,6 +32,7 @@ class ExchangeTest {
                 new Order("C2", OperationType.BUY, "B", 13, 1),
                 new Order("C3", OperationType.SELL, "B", 13, 1)
         ));
+
         List<Client> completedClientList = Exchange.completeListOfOrders(clientList, orderList);
         List<Client> expectedClientList = List.of(
                 new Client("C2", 0, new HashMap<>(Map.of("A", 370, "B", 1, "C", 950, "D", 560))),
@@ -60,5 +61,22 @@ class ExchangeTest {
         List<Client> completeList = Exchange.completeListOfOrders(clientList, orderList);
         // Количество бумаги А не изменится
         assertEquals(0, completeList.stream().filter(client -> "C3".equals(client.getName())).findAny().get().getPapersMap().get("A"));
+    }
+
+    // при двух заявках на покупку выполнится первая
+    @Test
+    void matchFirstOrder() {
+        Map<String, Integer> clientBalanceMap = Map.of("A", 370, "B", 15, "C", 950, "D", 560);
+        Client clientSameOrder = new Client("C1", 0, new HashMap<>(clientBalanceMap));
+        clientList.add(clientSameOrder);
+        List<Order> orderList = new ArrayList<>(List.of(
+                new Order("C2", OperationType.BUY, "B", 11, 1),
+                new Order("C3", OperationType.SELL, "B", 11, 1),
+                new Order("C1", OperationType.SELL, "B", 11, 1)
+        ));
+        List<Client> completedList = Exchange.completeListOfOrders(clientList, orderList);
+        // проверка на основании что его papersMap не изменится, если сделки не было
+        // для достоверности, можно поменять 2 и 3 Order местами и тест провалится
+        assertEquals(completedList.stream().filter(client -> "C1".equals(client.getName())).findAny().get().getPapersMap(), clientBalanceMap);
     }
 }
