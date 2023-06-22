@@ -77,6 +77,6 @@ class ExchangeTest {
         List<Client> completedList = Exchange.completeListOfOrders(clientList, orderList);
         // проверка на основании что его papersMap не изменится, если сделки не было
         // для достоверности, можно поменять 2 и 3 Order местами и тест провалится
-        assertEquals(completedList.stream().filter(client -> "C1".equals(client.getName())).findAny().get().getPapersMap(), clientBalanceMap);
+        assertEquals(clientBalanceMap, completedList.stream().filter(client -> "C1".equals(client.getName())).findAny().get().getPapersMap());
     }
 }
